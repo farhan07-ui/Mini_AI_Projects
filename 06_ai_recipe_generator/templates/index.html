@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>AI Recipe Generator</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>🍳 AI Recipe Generator</h1>
+
+
+<form method="POST">
+
+
+<textarea 
+name="ingredients"
+placeholder="Enter ingredients (example: egg, tomato, onion)"
+required></textarea>
+
+
+<button type="submit">
+Generate Recipe
+</button>
+
+
+</form>
+
+
+
+{% if recipe %}
+
+<div class="result">
+
+<h2>Your Recipe</h2>
+
+<pre>
+{{ recipe }}
+</pre>
+
+</div>
+
+{% endif %}
+
+
+</div>
+
+
+</body>
+
+</html>

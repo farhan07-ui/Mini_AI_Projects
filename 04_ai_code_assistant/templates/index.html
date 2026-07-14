@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Code Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💻 AI Code Assistant</h1>
+
+<form method="POST">
+
+<select name="task">
+
+<option>Explain Code</option>
+<option>Find Bugs</option>
+<option>Generate Python Function</option>
+<option>Convert Code</option>
+
+</select>
+
+<input
+type="text"
+name="language"
+placeholder="Language (Python, Java, C++, JS)"
+required>
+
+<textarea
+name="code"
+placeholder="Paste your code here..."
+required></textarea>
+
+<button type="submit">
+Generate
+</button>
+
+</form>
+
+{% if result %}
+
+<div class="output">
+
+<h2>Result</h2>
+
+<pre>{{ result }}</pre>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>

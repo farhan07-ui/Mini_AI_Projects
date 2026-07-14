@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local AI Research Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <h1>🔬 Local AI Research Assistant</h1>
+
+    <div class="container">
+        <!-- Section: Ask Ollama -->
+        <div class="tool-card">
+            <h2>💬 Ask Local Model</h2>
+            <form action="/" method="POST">
+                <textarea name="question" placeholder="Ask your research question to the local model..."></textarea>
+                <button type="submit">Ask Ollama</button>
+            </form>
+        </div>
+
+        <!-- Section: Answer Display (Only shows up when you search) -->
+        {% if answer %}
+            <div class="result-card">
+                <h2>Response:</h2>
+                <div class="result">
+                    {{ answer }}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <p style="color: #777; font-size: 0.85rem; margin-top: 40px;">Powered by Ollama (llama3.2)</p>
+
+</body>
+</html>

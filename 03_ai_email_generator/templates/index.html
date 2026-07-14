@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Email Generator</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container py-5">
+
+    <h1 class="text-center mb-2">📧 AI Email Generator</h1>
+    <p class="text-center text-muted mb-5">
+        Generate • Rewrite • Change Tone
+    </p>
+
+    <div class="card shadow-lg p-4">
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">
+                    What would you like to do?
+                </label>
+
+                <select class="form-select" name="action" id="action" onchange="toggleFields()">
+
+                    <option value="generate">
+                        Generate Professional Email
+                    </option>
+
+                    <option value="rewrite">
+                        Rewrite Email
+                    </option>
+
+                    <option value="tone">
+                        Change Email Tone
+                    </option>
+
+                </select>
+            </div>
+
+
+            <!-- Generate -->
+            <div id="generateField">
+
+                <label class="form-label">
+                    Describe the email
+                </label>
+
+                <textarea
+                    class="form-control"
+                    rows="6"
+                    name="prompt"
+                    placeholder="Example:
+Write an email requesting leave for two days due to fever."
+                ></textarea>
+
+            </div>
+
+
+            <!-- Rewrite / Tone -->
+            <div id="emailField" style="display:none;">
+
+                <label class="form-label mt-3">
+                    Paste your email
+                </label>
+
+                <textarea
+                    class="form-control"
+                    rows="8"
+                    name="email"
+                    placeholder="Paste your email here..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- Tone -->
+            <div id="toneField" style="display:none;">
+
+                <label class="form-label mt-3">
+                    Select Tone
+                </label>
+
+                <select class="form-select" name="tone">
+
+                    <option>Formal</option>
+
+                    <option>Friendly</option>
+
+                    <option>Professional</option>
+
+                    <option>Concise</option>
+
+                    <option>Polite</option>
+
+                    <option>Confident</option>
+
+                </select>
+
+            </div>
+
+
+            <button class="btn btn-primary mt-4 w-100">
+                🚀 Generate
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if result %}
+
+    <div class="card shadow-lg mt-5 p-4">
+
+        <h3>Generated Result</h3>
+
+        <textarea
+            class="form-control mt-3"
+            rows="15"
+            id="resultText"
+        >{{ result }}</textarea>
+
+        <button
+            class="btn btn-success mt-3"
+            onclick="copyText()">
+
+            📋 Copy
+
+        </button>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<script>
+
+function toggleFields(){
+
+    let action=document.getElementById("action").value;
+
+    let generate=document.getElementById("generateField");
+
+    let email=document.getElementById("emailField");
+
+    let tone=document.getElementById("toneField");
+
+
+    if(action==="generate"){
+
+        generate.style.display="block";
+        email.style.display="none";
+        tone.style.display="none";
+
+    }
+
+    else if(action==="rewrite"){
+
+        generate.style.display="none";
+        email.style.display="block";
+        tone.style.display="none";
+
+    }
+
+    else{
+
+        generate.style.display="none";
+        email.style.display="block";
+        tone.style.display="block";
+
+    }
+
+}
+
+toggleFields();
+
+
+function copyText(){
+
+    let copy=document.getElementById("resultText");
+
+    copy.select();
+
+    copy.setSelectionRange(0,99999);
+
+    navigator.clipboard.writeText(copy.value);
+
+    alert("Copied Successfully!");
+
+}
+
+</script>
+
+</body>
+</html>

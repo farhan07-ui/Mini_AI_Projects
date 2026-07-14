@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Meeting Notes Generator</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🤖 AI Meeting Notes Generator</h1>
+
+        <p>Upload your meeting transcript (.txt, .pdf, .docx)</p>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+            <input
+                type="file"
+                name="transcript"
+                accept=".txt,.pdf,.docx"
+                required>
+
+            <br><br>
+
+            <button type="submit">
+                Generate Notes
+            </button>
+
+        </form>
+
+        {% if result %}
+
+        <div class="result">
+
+            <h2>📝 AI Generated Meeting Notes</h2>
+
+            <pre>{{ result }}</pre>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

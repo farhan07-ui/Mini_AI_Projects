@@ -1,0 +1,8 @@
+langchain-community
+langchain-core
+pandas
+pypdf
+chromadb
+streamlit
+watchdog
+plotlystreamlit 
